@@ -34,10 +34,9 @@
 CAMLprim value ocaml_sendfile_sendfile_stub(value v_fd, value v_sock,
                                             value v_pos, value v_len) {
   CAMLparam4(v_fd, v_sock, v_pos, v_len);
-  ssize_t ret;
-
   off_t offset = Long_val(v_pos);
   off_t len = Long_val(v_len);
+  ssize_t ret;
 
   caml_release_runtime_system();
   ret = sendfile(Int_val(v_fd), Int_val(v_sock), offset, &len, NULL, 0);
